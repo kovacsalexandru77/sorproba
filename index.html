@@ -1,106 +1,34 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8" />
-<title>Scroll érzékelő sidebar</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-  body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #000;
-  color: white;
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  border: 4px solid cyan;
-  box-sizing: border-box; /* hogy ne nőjön meg a méret */
-}
-
-  .vertical-text {
-      position: fixed;
-      left: 0; 
-      top: 0; 
-      color: cyan;
-      font-size: 22px; 
-      background-color: #000; 
-      padding: 19px; 
-      z-index: 1000; 
-      white-space: nowrap; 
-      width: 100%; 
-      text-align: left; 
-    }
-
-  .black-sidebar {
-  position: fixed;
-  left: 0;
-  bottom: 0;          /* lent marad */
-  width: 0;
-  height: 240px;      /* vagy amekkora kell */
-  background-color: #000;  /* sima fekete, átlátszatlanság nélkül */
-  transition: width 0.1s ease, left 0.4s ease;
-  z-index: 11500;
-  overflow: hidden;
-}
-
-  .black-sidebar.active {
-    width: 110vw;   /* 10% szélesebb mint a képernyő */
-    left: -5vw;     /* 5% balra tolva, így középre kerül a kilógás */
-  }
-
-  iframe {
-    position: relative;
-    width: 100%;
-    height: 1500px;
-    border: none;
-    z-index: 0;
-  }
-
-  .clock {
-    position: fixed;
-    top: 4px;
-    right: 17px;
-    font-size: 16px;
-    color: cyan;
-    background: none;
-    padding: 7px 16px;
-    border-radius: 6px;
-    z-index: 10000;
-    font-weight: bold;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figyelmeztetés</title>
+    <style>
+        body {
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .warning-box {
+            background: #b2ebf2;
+            color: #006064;
+            padding: 30px 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 150, 136, 0.4);
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-
-  <div class="clock" id="clock"></div>
-  <div class="vertical-text">Sorozatok Sᴀɴᴅᴜ▶</div>
-
-  <div class="black-sidebar" id="blackSidebar"></div>
-
-  <iframe src="https://www.episode.hu/osszes/" frameborder="0" allowfullscreen></iframe>
-
-<script>
-  function updateClock() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}`;
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY || window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-
-    if (scrollTop + windowHeight >= documentHeight - 100) {
-      document.getElementById('blackSidebar').classList.add('active');
-    } else {
-      document.getElementById('blackSidebar').classList.remove('active');
-    }
-  });
-</script>
-
+    <div class="warning-box">
+        ⚠ Figyelmeztetés: Ez az app megvasarolhato,a demo tájékoztató jellegű! ⚠Tel: @sanduapk
+    </div>
 </body>
 </html>
